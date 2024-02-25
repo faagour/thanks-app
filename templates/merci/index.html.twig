@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Mercis{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1 class="mb-4">Liste des Mercis</h1>
+
+    {% if mercis is empty %}
+        <p>Aucun merci n'a été trouvé.</p>
+    {% else %}
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>De</th>
+                    <th>À</th>
+                    <th>Raison</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for merci in mercis %}
+                <tr>
+                    <td>{{ merci.fromEmployee }}</td>
+                    <td>{{ merci.toEmployee }}</td>
+                    <td>{{ merci.reason }}</td>
+                    <td>{{ merci.thankDate|date('Y-m-d H:i') }}</td>
+                    <td>
+            <form method="post" action="{{ path('merci_delete', {'id': merci.id}) }}" onsubmit="return confirm('Êtes-vous sûr?');">
+                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ merci.id) }}">
+                <button class="btn btn-danger">Supprimer</button>
+            </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+
+</div>
+{% endblock %}

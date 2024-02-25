@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dire Merci{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <h1 class="mb-4">Dire Merci</h1>
+
+    {{ form_start(form, {'attr': {'class': 'form'}}) }}
+        <div class="form-group">
+            {{ form_label(form.fromEmployee) }}
+            {{ form_widget(form.fromEmployee, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form.toEmployee) }}
+            {{ form_widget(form.toEmployee, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form.reason) }}
+            {{ form_widget(form.reason, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form.thankDate) }}
+            {{ form_widget(form.thankDate, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <button type="submit" class="btn btn-primary">Envoyer</button>
+    {{ form_end(form) }}
+</div>
+{% endblock %}
